@@ -155,11 +155,6 @@ footer a:hover {
         font-size: 1em;
     }
 
-    img {
-        width: 100%;
-        height: auto;
-    }
-
     #prediction-table-container {
         width: 100%;
     }}

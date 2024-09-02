@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juicy Class</title>
@@ -19,41 +20,42 @@
 
         window.onload = loadModel;
 
-        // Empêche le comportement par défaut de l'événement drop (comme ouvrir l'image dans une nouvelle fenêtre)
-function handleDrop(event) {
-    event.preventDefault();  // Empêche l'ouverture d'une nouvelle fenêtre
-    loadImage(event);  // Appelle la fonction pour charger l'image
-}
+        
+        function handleDrop(event) {
+            event.preventDefault();  
+            loadImage(event); 
+        }
 
-async function loadImage(event) {
-    const image = document.getElementById('image-loaded');
-    const processButton = document.getElementById('process-button');
-    
-    const file = event.dataTransfer ? event.dataTransfer.files[0] : event.target.files[0];
-    const reader = new FileReader();
+        async function loadImage(event) {
+            const image = document.getElementById('image-loaded');
+            const processButton = document.getElementById('process-button');
+            
+            const file = event.dataTransfer ? event.dataTransfer.files[0] : event.target.files[0];
+            const reader = new FileReader();
 
-    reader.onload = function(e) {
-        const img = new Image();
-        img.src = e.target.result;
-        img.onload = function() {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = 224;
-            canvas.height = 224;
-            ctx.drawImage(img, 0, 0, 224, 224);
-            image.src = canvas.toDataURL();
-            image.style.display = 'block';  
-            processButton.style.display = 'block';  
-        };
-    };
+            reader.onload = function(e) {
+                const img = new Image();
+                img.src = e.target.result;
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = 224;
+                    canvas.height = 224;
+                    ctx.drawImage(img, 0, 0, 224, 224);
+                    image.src = canvas.toDataURL();
+                    image.style.display = 'block';  
+                    processButton.style.display = 'block';  
+                };
+            };
 
-    reader.readAsDataURL(file);
-}
-
+            reader.readAsDataURL(file);
+        }
 
         async function processImage() {
             const image = document.getElementById('image-loaded');
             const predictionTableContainer = document.getElementById('prediction-table-container');
+            const processButton = document.getElementById('process-button');
+            processButton.innerText = "Please Wait ...";  
 
             try {
                 const output = tf.browser.fromPixels(image);
@@ -63,20 +65,27 @@ async function loadImage(event) {
 
                 const predictions = globalThis.TensorFlowModel.predict(tfnormalized);
                 const predictionArray = Array.from(predictions.dataSync());
-
                 
-                document.getElementById('beer-prediction').innerText = (predictionArray[0] * 100).toFixed(2) + '%';
-                document.getElementById('plastic-prediction').innerText = (predictionArray[1] * 100).toFixed(2) + '%';
-                document.getElementById('soda-prediction').innerText = (predictionArray[2] * 100).toFixed(2) + '%';
-                document.getElementById('water-prediction').innerText = (predictionArray[3] * 100).toFixed(2) + '%';
-                document.getElementById('wine-prediction').innerText = (predictionArray[4] * 100).toFixed(2) + '%';
+                const classLabels = ["Beer Bottle", "Plastic Bottle", "Soda Bottle", "Water Bottle", "Wine Bottle"];
+                const sortedPredictions = classLabels.map((label, index) => ({
+                    label: label,
+                    probability: predictionArray[index] * 100
+                })).sort((a, b) => b.probability - a.probability);
+
+                const tableBody = document.querySelector('#prediction-table tbody');
+                tableBody.innerHTML = ""; 
+                sortedPredictions.forEach(prediction => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `<td>${prediction.label}</td><td>${prediction.probability.toFixed(2)}%</td>`;
+                    tableBody.appendChild(row);
+                });
 
                 predictionTableContainer.style.display = 'block';
-
-            
                 predictionTableContainer.scrollIntoView({ behavior: 'smooth' });
+                processButton.innerText = "Process Image";  
             } catch (error) {
                 console.error("Error processing image:", error);
+                processButton.innerText = "Error"; 
             }
         }
     </script>
@@ -91,7 +100,7 @@ async function loadImage(event) {
 </div>
 <input type="file" id="file-input" style="display:none;" onchange="loadImage(event)">
 
-    <img id="image-loaded" width="224" height="224" alt="Uploaded Image" class = "force-size">
+    <img id="image-loaded" width="224" height="224" alt="Uploaded Image" class="force-size">
     <div id="image-info"></div>
     <button id="process-button" onclick="processImage()">Process Image</button>
     
@@ -105,26 +114,7 @@ async function loadImage(event) {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Beer Bottle</td>
-                    <td id="beer-prediction">-</td>
-                </tr>
-                <tr>
-                    <td>Plastic Bottle</td>
-                    <td id="plastic-prediction">-</td>
-                </tr>
-                <tr>
-                    <td>Soda Bottle</td>
-                    <td id="soda-prediction">-</td>
-                </tr>
-                <tr>
-                    <td>Water Bottle</td>
-                    <td id="water-prediction">-</td>
-                </tr>
-                <tr>
-                    <td>Wine Bottle</td>
-                    <td id="wine-prediction">-</td>
-                </tr>
+                <!-- Rows -->
             </tbody>
         </table>
     </div>

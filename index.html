@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juicy Class</title>
@@ -10,7 +10,7 @@
         async function loadModel() {
             console.log("Loading The Model....");
             try {
-                globalThis.TensorFlowModel = await tf.loadGraphModel("./suffer/model.json");
+                globalThis.TensorFlowModel = await tf.loadGraphModel("./model.json");
                 console.log("Model loaded successfully");
             } catch (error) {
                 console.error("Error loading model:", error);

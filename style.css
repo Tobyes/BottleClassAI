@@ -1,0 +1,158 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e7e1e1;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h2, h3 {
+    text-align: center;
+    color: #333;
+    margin-top: 80px;
+}
+
+#upload-area {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px dashed #333;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+#upload-area p {
+    margin: 0;
+    color: #333;
+}
+
+#upload-area.dragover {
+    border-color: #1e90ff;
+    background-color: #f0f8ff;
+}
+
+img {
+    display: none;
+    margin: 20px auto;
+    border: 2px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease;
+}
+
+img[src] {
+    opacity: 1;
+}
+
+#image-info {
+    text-align: center;
+    font-size: 1em;
+    margin-top: 20px;
+}
+
+#image-info p {
+    margin: 10px 0;
+    color: #555;
+}
+
+#process-button {
+    display: none;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#process-button:hover {
+    background-color: #555;
+}
+
+#prediction-table-container {
+    display: none;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    transition: opacity 0.3s ease;
+}
+
+#prediction-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#prediction-table th, #prediction-table td {
+    border: 2px solid #333;
+    padding: 10px;
+    text-align: center;
+}
+
+#prediction-table th {
+    background-color: #333;
+    color: #fff;
+}
+
+#prediction-table td {
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+#prediction-table td:nth-child(2) {
+    font-weight: bold;
+}
+
+/* Footer styling */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9em;
+    margin-top: auto; /* Push footer to the bottom */
+}
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    color: #1e90ff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h2, h3 {
+        font-size: 1.5em;
+    }
+
+    #upload-area {
+        width: 90%;
+        font-size: 1em;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    #prediction-table-container {
+        width: 100%;
+    }}

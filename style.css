@@ -62,6 +62,13 @@ img[src] {
     color: #555;
 }
 
+#force-size{
+    max-width: 224px;
+    max-height: 224px;
+    width: 224px;
+    height: 224px;
+}
+
 #process-button {
     display: none;
     margin: 20px auto;

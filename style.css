@@ -9,10 +9,15 @@ body {
     flex-direction: column;
 }
 
-h2, h3 {
+h2 {
     text-align: center;
     color: #333;
     margin-top: 80px;
+}
+
+h3 {
+    text-align: center;
+    color: #333;
 }
 
 #upload-area {
@@ -62,7 +67,7 @@ img[src] {
     color: #555;
 }
 
-#force-size{
+#force-size {
     max-width: 224px;
     max-height: 224px;
     width: 224px;
@@ -70,13 +75,14 @@ img[src] {
 }
 
 #process-button {
+    font-size: larger;
     display: none;
     margin: 20px auto;
     padding: 10px 20px;
     background-color: #333;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -87,7 +93,9 @@ img[src] {
 
 #prediction-table-container {
     display: none;
-    margin: 20px auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
     width: 90%;
     max-width: 600px;
     text-align: center;
@@ -97,11 +105,12 @@ img[src] {
 #prediction-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#prediction-table th, #prediction-table td {
+#prediction-table th,
+#prediction-table td {
     border: 2px solid #333;
     padding: 10px;
     text-align: center;
@@ -128,7 +137,8 @@ footer {
     text-align: center;
     padding: 15px 0;
     font-size: 0.9em;
-    margin-top: auto; /* Push footer to the bottom */
+    margin-top: auto;
+    /* Push footer to the bottom */
 }
 
 footer p {
@@ -146,7 +156,9 @@ footer a:hover {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    h2, h3 {
+
+    h2,
+    h3 {
         font-size: 1.5em;
     }
 
@@ -157,4 +169,30 @@ footer a:hover {
 
     #prediction-table-container {
         width: 100%;
-    }}
+    }
+}
+
+#about-popup {
+    display: none;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    padding: 15px;
+    background-color: #fff;
+    color: #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    z-index: 1000;
+}
+
+#about-popup p {
+    margin: 0;
+}
+
+/* Show the popup on hover */
+#about-link:hover + #about-popup {
+    display: block;
+}

@@ -52,7 +52,7 @@ async function processImage() {
     await new Promise(resolve => setTimeout(resolve, 50)); // Small delay to allow UI update
     
     try {
-        const startTime = performance.now();  // Start timing
+        const startTime = performance.now();  
 
         const output = tf.browser.fromPixels(image);
         const tensor = output.expandDims(0);

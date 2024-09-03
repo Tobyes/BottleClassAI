@@ -130,15 +130,15 @@ img[src] {
     font-weight: bold;
 }
 
-/* Footer styling */
+
 footer {
     background-color: #333;
     color: white;
     text-align: center;
     padding: 15px 0;
     font-size: 0.9em;
-    margin-top: auto;
-    /* Push footer to the bottom */
+    margin-top: auto; 
+    position: relative;
 }
 
 footer p {
@@ -154,23 +154,6 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-
-    h2,
-    h3 {
-        font-size: 1.5em;
-    }
-
-    #upload-area {
-        width: 90%;
-        font-size: 1em;
-    }
-
-    #prediction-table-container {
-        width: 100%;
-    }
-}
 
 #about-popup {
     display: none;
@@ -192,7 +175,26 @@ footer a:hover {
     margin: 0;
 }
 
-/* Show the popup on hover */
+
 #about-link:hover + #about-popup {
     display: block;
+}
+
+
+
+@media (max-width: 768px) {
+
+    h2,
+    h3 {
+        font-size: 1.5em;
+    }
+
+    #upload-area {
+        width: 90%;
+        font-size: 1em;
+    }
+
+    #prediction-table-container {
+        width: 100%;
+    }
 }

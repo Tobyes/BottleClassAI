@@ -5,8 +5,8 @@
   "background_color": "#e7e1e1",
   "display": "standalone",
   "orientation": "",
-  "scope": "/botai",
-  "start_url": "https://tobyes.github.io/ ",
+  "scope": "/",
+  "start_url": "https://tobyes.github.io/botai ",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",

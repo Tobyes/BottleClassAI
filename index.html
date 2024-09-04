@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juicy Class</title>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.0"></script>
-    <link rel="manifest" href="/botai/manifest.json">
+    <link rel="manifest" href="manifest.json">
     <script>
         if ('serviceWorker' in navigator) {
           window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/botai/service-worker.js')
+            navigator.serviceWorker.register('service-worker.js')
               .then(registration => {
                 console.log('ServiceWorker registration successful with scope: ', registration.scope);
               }, err => {

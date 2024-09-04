@@ -19,7 +19,9 @@ const urlsToCache = [
   '/botai/images/icon-384x384.png',
   '/botai/images/icon-512x512.png',
   '/botai/favicon.ico',
-  '/botai/README.md'
+  '/botai/README.md',
+  '/botai/manifest.json',
+  '/botai/index.html'
 ];
 
 self.addEventListener('install', event => {
